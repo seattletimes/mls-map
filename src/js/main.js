@@ -3,7 +3,11 @@
 var $ = require("jquery");
 var L = require("leaflet");
 
-var map = L.map('map').setView([25, 0], 3);
+var map = L.map('map');
+map.fitBounds([
+    [-50, -45],
+    [58, 30]
+]);
 
 var request = $.ajax({
   url: "assets/countries.geo.json",
