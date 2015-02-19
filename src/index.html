@@ -11,6 +11,17 @@
 
     <div id="map"></div>
 
+    <script>
+      <%
+        var soundersData = {};
+        json.MLSCountries_Sounders_Total.forEach(function(c) {
+          var country = c.country;
+          var players = c.players;
+          soundersData[country] = { "players": players };
+        });
+      %>
+      var soundersData = <%= JSON.stringify(soundersData) %>;
+    </script>
     <script src="app.js"></script>
     <%= json.project.production ? t.include("partials/_adFoot.html") : "" %>
     <%= json.project.production ? t.include("partials/_workHere.html") : "" %>
