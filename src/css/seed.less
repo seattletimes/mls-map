@@ -1,4 +1,8 @@
 @import (inline) "../../node_modules/leaflet/dist/leaflet.css";
+@import "page";
+
+@mobile: ~"(max-width: 480px)";
+@top-height: 40px;
 
 * {
   -webkit-box-sizing: border-box;
@@ -7,9 +11,20 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+}
+
+.map-container {
+  width: 100%;
+  height: calc(~"100% - @{top-height}");
+  top: @top-height;
+  position: fixed;
+}
+
 #map {
-  height: 600px;
-  width: 800px;
+  height: 100%;
+  width: 100%;
 }
 
 .leaflet-container {

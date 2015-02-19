@@ -3,7 +3,7 @@
 var $ = require("jquery");
 var L = require("leaflet");
 
-var map = L.map('map').setView([25, 0], 2);
+var map = L.map('map').setView([25, 0], 3);
 
 var request = $.ajax({
   url: "assets/countries.geo.json",
