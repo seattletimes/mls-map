@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "component-responsive-frame": "~0.0.5",
-    "leaflet": "~0.7.3"
+    "leaflet": "~0.7.3",
+    "jquery": "~2.1.3"
   }
 }
