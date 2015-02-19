@@ -5,11 +5,6 @@ var L = require("leaflet");
 
 var map = L.map('map').setView([25, 0], 2);
 
-L.tileLayer('//{s}.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-  subdomains: ["server", "services"],
-  attribution: "Esri, NAVTEQ, DeLorme" 
-}).addTo(map);
-
 var request = $.ajax({
   url: "assets/countries.geo.json",
   dataType: "json"
@@ -17,9 +12,9 @@ var request = $.ajax({
   L.geoJson(data, {
     style: function (feature) {
       return { 
-        color: "#005595",
+        color: "black",
         fillColor: fillColor(feature.properties.name),
-        weight: 2,
+        weight: 1,
         fillOpacity: 1
       };
     }
@@ -45,8 +40,8 @@ var fillColor = function(name) {
   }
 };
 
-var color1 = "#1f4f07";
-var color2 = "#407a24";
+var color1 = "#23580a";
+var color2 = "#3d7a20";
 var color3 = "#5d9741";
-var color4 = "#87b471";
-var color5 = "#c0d8b4";
+var color4 = "#80b069";
+var color5 = "#bedbb0";
