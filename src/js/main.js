@@ -5,8 +5,10 @@ var L = require("leaflet");
 
 var map = L.map('map');
 map.fitBounds([
-    [-50, -45],
-    [58, 30]
+    [-28, -135],
+    [63, 14],
+    [-40, 125],
+    [-41, -68]
 ]);
 
 var request = $.ajax({
