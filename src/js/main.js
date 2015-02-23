@@ -28,6 +28,7 @@ var request = $.ajax({
 });
 
 var fillColor = function(name) {
+    console.log(soundersData)
   if (soundersData[name]) {
     var players = parseInt(soundersData[name].players);
     if (players > 11) {

@@ -23,11 +23,21 @@
         var soundersData = {};
         json.MLSCountries_Sounders_Total.forEach(function(c) {
           var country = c.country;
-          var players = c.players;
-          soundersData[country] = { "players": players };
+          var players = c.totalplayers;
+          if (!soundersData[country]) { soundersData[country] = {} }
+          soundersData[country].players = players;
+
+          if (c.subcountry && c.subplayers) { 
+            var subCountry = c.subcountry;
+            var subPlayers = c.subplayers;
+
+            if (!soundersData[country].subData) { soundersData[country].subData = {} }
+            soundersData[country].subData[subCountry] = subPlayers;
+          }
         });
       %>
       var soundersData = <%= JSON.stringify(soundersData) %>;
+      console.log(soundersData)
     </script>
     <script src="app.js"></script>
     <%= json.project.production ? t.include("partials/_adFoot.html") : "" %>
