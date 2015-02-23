@@ -55,6 +55,11 @@
     "players": "4"
   },
   {
+    "title": "Lesser Antilles",
+    "country": "Lesser Antilles",
+    "players": "4"
+  },
+  {
     "title": "Uruguay",
     "country": "Uruguay",
     "players": "3"
@@ -77,11 +82,6 @@
   {
     "title": "Switzerland",
     "country": "Switzerland",
-    "players": "2"
-  },
-  {
-    "title": "Martinique",
-    "country": "Martinique",
     "players": "2"
   },
   {
@@ -110,19 +110,9 @@
     "players": "2"
   },
   {
-    "title": "United Kingom",
-    "country": "United Kingom",
+    "title": "United Kingdom",
+    "country": "United Kingdom",
     "players": "2"
-  },
-  {
-    "title": "Trinidad and Tobago",
-    "country": "Trinidad and Tobago",
-    "players": "1"
-  },
-  {
-    "title": "Grenada",
-    "country": "Grenada",
-    "players": "1"
   },
   {
     "title": "Germany",
