@@ -2,6 +2,10 @@
 
 var $ = require("jquery");
 var L = require("leaflet");
+var ich = require("icanhaz");
+var popupHTML = require("./_popup.html");
+
+ich.addTemplate("popup", popupHTML);
 
 var map = L.map('map');
 map.fitBounds([
@@ -15,7 +19,7 @@ var request = $.ajax({
   url: "assets/countries.geo.json",
   dataType: "json"
 }).then(function(data) {
-  L.geoJson(data, {
+  var layer = L.geoJson(data, {
     style: function (feature) {
       return { 
         color: "black",
@@ -24,11 +28,39 @@ var request = $.ajax({
         fillOpacity: 1
       };
     }
-  }).addTo(map);
+  })
+
+  layer.eachLayer(function(l) {
+    var country = l.feature.properties.name;
+    
+    if (soundersData[country]) {
+      var players = soundersData[country].players;
+
+      var options = {
+        country: country,
+        players: players
+      }
+
+      if (soundersData[country].subData) {
+        var array = [];
+        for (var subCountry in soundersData[country].subData) {
+          array.push({
+            subCountry: subCountry,
+            subPlayers: soundersData[country].subData[subCountry]
+          })
+        }
+        options.subData = array;
+      }
+
+      l.bindPopup(ich.popup( options ));
+    }
+
+  });
+
+  layer.addTo(map);
 });
 
 var fillColor = function(name) {
-    console.log(soundersData)
   if (soundersData[name]) {
     var players = parseInt(soundersData[name].players);
     if (players > 11) {
