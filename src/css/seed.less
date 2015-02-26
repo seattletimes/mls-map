@@ -4,6 +4,8 @@
 @mobile: ~"(max-width: 480px)";
 @top-height: 40px;
 
+@sounders-blue: #005595;
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -29,7 +31,7 @@ body {
 }
 
 .leaflet-container {
-  background-color: #005595;
+  background-color: @sounders-blue;
 }
 
 // leaflet popup
@@ -43,6 +45,11 @@ body {
 }
 .sub.players:not(:last-of-type) {
   padding-bottom: 5px;
+}
+
+.badge-container {
+  position: absolute;
+  top: 100px; left: 100px;
 }
 
 // legend

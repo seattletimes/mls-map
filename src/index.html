@@ -19,6 +19,13 @@
 
     <div class="map-container"><div id="map"></div></div>
 
+<div class="badge-container">
+    <div class="badge" data-team="chicago">Chicago</div>
+    <div class="badge" data-team="portland">Portland</div>
+    <div class="badge" data-team="seattle">Seattle</div>
+    <div class="badge" data-team="dc">DC</div>
+  </div>
+
     <div class="legend">
       <div class="label"><em>Number of players</em></div>
       <div class="inner"><div class="swatch color-1"></div> 12+</div>
@@ -46,7 +53,30 @@
           }
         });
       %>
+      <%
+        var teamData = {};
+        json.MLSCountries_Current_Clean.forEach(function(t) {
+          var id = t.id;
+          var team = t.team;
+          var country = t.country;
+          var players = t.totalplayers;
+
+          if (!teamData[id]) { teamData[id] = {} }
+          teamData[id].team = team;
+          if (!teamData[id][country]) { teamData[id][country] = {} }
+          teamData[id][country].players = players;
+
+          if (t.subcountry && t.subplayers) { 
+            var subCountry = t.subcountry;
+            var subPlayers = t.subplayers;
+
+            if (!teamData[id][country].subData) { teamData[id][country].subData = {} }
+            teamData[id][country].subData[subCountry] = subPlayers;
+          }
+        });
+      %>
       var soundersData = <%= JSON.stringify(soundersData) %>;
+      var teamData = <%= JSON.stringify(teamData) %>;
     </script>
     <script src="app.js"></script>
     <%= json.project.production ? t.include("partials/_adFoot.html") : "" %>
