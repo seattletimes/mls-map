@@ -26,35 +26,36 @@ var request = $.ajax({
     style: restyle
   })
 
+  setTooltips();
+
+  worldLayer.addTo(map);
+});
+
+var setTooltips = function(){
   worldLayer.eachLayer(function(l) {
     var country = l.feature.properties.name;
     
-    if (soundersData[country]) {
-      var players = soundersData[country].players;
-
+    if (teamData[team][country]) {
+      var players = teamData[team][country].players;
       var options = {
         country: country,
         players: players
       }
-
-      if (soundersData[country].subData) {
+      
+      if (teamData[team][country].subData) {
         var array = [];
-        for (var subCountry in soundersData[country].subData) {
+        for (var subCountry in teamData[team][country].subData) {
           array.push({
             subCountry: subCountry,
-            subPlayers: soundersData[country].subData[subCountry]
+            subPlayers: teamData[team][country].subData[subCountry]
           })
         }
         options.subData = array;
       }
-
       l.bindPopup(ich.popup( options ));
     }
-
   });
-
-  worldLayer.addTo(map);
-});
+};
 
 var restyle = function(feature) {
   return { 
@@ -68,6 +69,7 @@ var restyle = function(feature) {
 $(".badge").click(function(e){
   team = $(e.target).data("team");
   worldLayer.setStyle(restyle);
+  setTooltips();
 });
 
 var fillTeamColor = function(teamId, country) {
