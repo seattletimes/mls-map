@@ -13,6 +13,7 @@
 
 body {
   margin: 0;
+  font-family: "Ropa Sans";
 }
 
 .map-container {
@@ -31,16 +32,52 @@ body {
   background-color: #005595;
 }
 
+// leaflet popup
 .country {
-  font-family: "Ropa Sans";
   font-size: 17px;
   color: #005595;
 }
-
 .players {
   font-family: "Lato";
 }
-
 .sub.players:not(:last-of-type) {
   padding-bottom: 5px;
+}
+
+// legend
+.legend {
+  position: absolute;
+  background: white;
+  width: 170px;
+  height: 124px;
+  bottom: 30px;
+  left: 30px;
+  border-radius: 2px;
+  font-size: 14px;
+
+  .inner {
+    padding: 5px;
+  }
+}
+.swatch {
+  height: 12px;
+  width: 12px; 
+  display: inline-block;
+  border-radius: 2px;
+
+  &.color-1 {
+    background: #23580a;
+  }
+  &.color-2 {
+    background: #3d7a20;
+  }
+  &.color-3 {
+    background: #5d9741;
+  }
+  &.color-4 {
+    background: #80b069;
+  }
+  &.color-5 {
+    background: #bedbb0;
+  }
 }
