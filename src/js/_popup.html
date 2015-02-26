@@ -1,8 +1,9 @@
-{{country}}
-
-{{players}}
+{{^subData}} 
+  <div class="country">{{country}}</div>
+  <div class="players">Total players: {{players}}</div>
+{{/subData}}
 
 {{#subData}} 
-  {{subCountry}}
-  {{subPlayers}}
+  <div class="country">{{subCountry}}</div>
+  <div class="sub players">Total players: {{subPlayers}}</div>
 {{/subData}}
