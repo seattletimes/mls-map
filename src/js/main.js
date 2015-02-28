@@ -5,7 +5,7 @@ var L = require("leaflet");
 var ich = require("icanhaz");
 var popupHTML = require("./_popup.html");
 
-var team = "chicago";
+var team = "world";
 var worldLayer;
 
 ich.addTemplate("popup", popupHTML);
@@ -34,25 +34,36 @@ var request = $.ajax({
 var setTooltips = function(){
   worldLayer.eachLayer(function(l) {
     var country = l.feature.properties.name;
-    
-    if (teamData[team][country]) {
-      var players = teamData[team][country].players;
+
+      if (team == "world") {
+        source = worldData;
+      } else if (team == "sounders") {
+        source = soundersData;
+      } else {
+        console.log(team)
+        source = teamData[team];
+      }
+
+    if (source[country]) {
+      var players = source[country].players;
       var options = {
         country: country,
         players: players
       }
-      
-      if (teamData[team][country].subData) {
+
+      if (source[country].subData) {
         var array = [];
-        for (var subCountry in teamData[team][country].subData) {
+        for (var subCountry in source[country].subData) {
           array.push({
             subCountry: subCountry,
-            subPlayers: teamData[team][country].subData[subCountry]
+            subPlayers: source[country].subData[subCountry]
           })
         }
         options.subData = array;
       }
       l.bindPopup(ich.popup( options ));
+    } else {
+
     }
   });
 };
@@ -60,21 +71,32 @@ var setTooltips = function(){
 var restyle = function(feature) {
   return { 
     color: "black",
-    fillColor: fillTeamColor(team, feature.properties.name),
+    fillColor: fillColor(team, feature.properties.name),
     weight: 1,
     fillOpacity: 1
   };
 };
 
-$(".badge").click(function(e){
+$(".badge img").click(function(e){
   team = $(e.target).data("team");
+  console.log(e.target, team)
   worldLayer.setStyle(restyle);
   setTooltips();
 });
 
-var fillTeamColor = function(teamId, country) {
-  if (teamData[teamId][country]) {
-    var players = parseInt(teamData[teamId][country].players);
+var fillColor = function(teamId, country) {
+  var source;
+  if (teamId == "world") {
+    source = worldData;
+  } else if (teamId == "sounders") {
+    source = soundersData;
+  } else {
+    source = teamData[teamId];
+  }
+
+
+  if (source[country]) {
+    var players = parseInt(source[country].players);
     if (players > 11) {
       return mls1;
     } else if (players <= 11 && players > 8) {
