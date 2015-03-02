@@ -98,27 +98,6 @@
     "subplayers": ""
   },
   {
-    "title": "Caribbean",
-    "country": "Caribbean",
-    "totalplayers": "7",
-    "subcountry": "St. Kitts and Nevis",
-    "subplayers": "4"
-  },
-  {
-    "title": "Caribbean",
-    "country": "Caribbean",
-    "totalplayers": "7",
-    "subcountry": "Martinique",
-    "subplayers": "2"
-  },
-  {
-    "title": "Caribbean",
-    "country": "Caribbean",
-    "totalplayers": "7",
-    "subcountry": "Trinidad and Tobago",
-    "subplayers": "1"
-  },
-  {
     "title": "Spain",
     "country": "Spain",
     "totalplayers": "5",
@@ -131,6 +110,27 @@
     "totalplayers": "5",
     "subcountry": "",
     "subplayers": ""
+  },
+  {
+    "title": "Caribbean",
+    "country": "Caribbean",
+    "totalplayers": "4",
+    "subcountry": "St. Kitts and Nevis",
+    "subplayers": "1"
+  },
+  {
+    "title": "Caribbean",
+    "country": "Caribbean",
+    "totalplayers": "4",
+    "subcountry": "Martinique",
+    "subplayers": "2"
+  },
+  {
+    "title": "Caribbean",
+    "country": "Caribbean",
+    "totalplayers": "4",
+    "subcountry": "Trinidad and Tobago",
+    "subplayers": "1"
   },
   {
     "title": "Portugal",

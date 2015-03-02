@@ -23,49 +23,50 @@ var request = $.ajax({
   dataType: "json"
 }).then(function(data) {
   worldLayer = L.geoJson(data, {
-    style: restyle
+    style: restyle,
+    onEachFeature: function (feature, layer) {
+      layer.on({
+        click: function(e) {
+          openTooltip(e);
+        }
+      });
+    }
   })
-
-  setTooltips();
 
   worldLayer.addTo(map);
 });
 
-var setTooltips = function(){
-  worldLayer.eachLayer(function(l) {
-    var country = l.feature.properties.name;
+var openTooltip = function(event){
+  var country = event.target.feature.properties.name;
 
-      if (team == "world") {
-        source = worldData;
-      } else if (team == "sounders") {
-        source = soundersData;
-      } else {
-        console.log(team)
-        source = teamData[team];
-      }
+  if (team == "world") {
+    source = worldData;
+  } else if (team == "sounders") {
+    source = soundersData;
+  } else {
+    source = teamData[team];
+  }
 
-    if (source[country]) {
-      var players = source[country].players;
-      var options = {
-        country: country,
-        players: players
-      }
-
-      if (source[country].subData) {
-        var array = [];
-        for (var subCountry in source[country].subData) {
-          array.push({
-            subCountry: subCountry,
-            subPlayers: source[country].subData[subCountry]
-          })
-        }
-        options.subData = array;
-      }
-      l.bindPopup(ich.popup( options ));
-    } else {
-
+  if (source[country]) {
+    var players = source[country].players;
+    var options = {
+      country: country,
+      players: players
     }
-  });
+
+    if (source[country].subData) {
+      var array = [];
+      for (var subCountry in source[country].subData) {
+        array.push({
+          subCountry: subCountry,
+          subPlayers: source[country].subData[subCountry]
+        })
+      }
+      options.subData = array;
+    }
+    var coords = event.latlng;
+    map.openPopup(ich.popup( options ), coords);
+  }
 };
 
 var restyle = function(feature) {
@@ -79,9 +80,8 @@ var restyle = function(feature) {
 
 $(".badge img").click(function(e){
   team = $(e.target).data("team");
-  console.log(e.target, team)
   worldLayer.setStyle(restyle);
-  setTooltips();
+  map.closePopup();
 });
 
 var fillColor = function(teamId, country) {
