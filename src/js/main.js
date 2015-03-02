@@ -5,7 +5,7 @@ var L = require("leaflet");
 var ich = require("icanhaz");
 var popupHTML = require("./_popup.html");
 
-var team = "world";
+var team = "mls";
 var worldLayer;
 
 ich.addTemplate("popup", popupHTML);
@@ -78,35 +78,43 @@ var restyle = function(feature) {
   };
 };
 
-$(".sounders-badge").click(function(e){
+$(".toggle button").click(function(e){
   team = $(e.target).data("team");
   worldLayer.setStyle(restyle);
   map.closePopup();
+  $(".toggle button.selected").removeClass("selected");
+  $(e.target).addClass("selected");
 });
 $(".badge img").click(function(e){
   team = $(e.target).data("team");
   worldLayer.setStyle(restyle);
   map.closePopup();
+  if (team == "seattle") {
+    $(".toggle button").show();
+  } else {
+    $(".toggle button").hide();
+  }
+  $(".hero").html("<img src='./assets/" + team + ".gif'></img>")
 });
 
 var fillColor = function(teamId, country) {
   var source;
-  if (teamId == "world") {
+  if (teamId == "mls") {
     if (worldData[country]) {
       var players = parseInt(worldData[country].players);
       if (players > 20) {
-        return world1;
+        return mls1;
       } else if (players <= 20 && players > 12) {
-        return world2;
+        return mls2;
       } else if (players <= 12 && players > 6) {
-        return world3;
+        return mls3;
       } else if (players <= 6 && players > 2) {
-        return world4;
+        return mls4;
       } else if (players <= 2 && players > 0) {
-        return world5;
+        return mls5;
       }
     } else {
-      return "white";
+      return "#EEE";
     }
   } else if (teamId == "sounders") {
     if (soundersData[country]) {
@@ -123,33 +131,33 @@ var fillColor = function(teamId, country) {
         return sounders5;
       }
     } else {
-      return "white";
+      return "#EEE";
     }
   } else {
     if (teamData[teamId][country]) {
       var players = parseInt(teamData[teamId][country].players);
       if (players > 11) {
-        return world1;
+        return mls1;
       } else if (players <= 11 && players > 8) {
-        return world2;
+        return mls2;
       } else if (players <= 8 && players > 5) {
-        return world3;
+        return mls3;
       } else if (players <= 5 && players > 2) {
-        return world4;
+        return mls4;
       } else if (players <= 2 && players > 0) {
-        return world5;
+        return mls5;
       }
     } else {
-      return "white";
+      return "#EEE";
     }
   }
 };
 
-var world5 = "#e1a8a9";
-var world4 = "#e16667";
-var world3 = "#e32527";
-var world2 = "#ab1b1d";
-var world1 = "#831213";
+var mls5 = "#e1a8a9";
+var mls4 = "#e16667";
+var mls3 = "#e32527";
+var mls2 = "#ab1b1d";
+var mls1 = "#831213";
 
 var sounders1 = "#23580a";
 var sounders2 = "#3d7a20";

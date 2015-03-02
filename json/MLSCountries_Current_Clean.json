@@ -1308,6 +1308,15 @@
     "id": "sanjose",
     "title": "sanjose",
     "team": "San Jose Earthquakes",
+    "country": "Jamaica",
+    "totalplayers": "2",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
+    "id": "sanjose",
+    "title": "sanjose",
+    "team": "San Jose Earthquakes",
     "country": "United Kingdom",
     "totalplayers": "1",
     "subcountry": "",
@@ -1330,15 +1339,6 @@
     "totalplayers": "1",
     "subcountry": "Trinidad and Tobago",
     "subplayers": "1"
-  },
-  {
-    "id": "sanjose",
-    "title": "sanjose",
-    "team": "San Jose Earthquakes",
-    "country": "Jamaica",
-    "totalplayers": "1",
-    "subcountry": "",
-    "subplayers": ""
   },
   {
     "id": "sanjose",
@@ -1371,7 +1371,7 @@
     "id": "sanjose",
     "title": "sanjose",
     "team": "San Jose Earthquakes",
-    "country": "Jamaica",
+    "country": "France",
     "totalplayers": "1",
     "subcountry": "",
     "subplayers": ""
@@ -1380,7 +1380,7 @@
     "id": "sanjose",
     "title": "sanjose",
     "team": "San Jose Earthquakes",
-    "country": "France",
+    "country": "Portugal",
     "totalplayers": "1",
     "subcountry": "",
     "subplayers": ""
@@ -1500,7 +1500,7 @@
     "country": "Caribbean",
     "totalplayers": "1",
     "subcountry": "Martinique",
-    "subplayers": "1"
+    "subplayers": ""
   },
   {
     "id": "kansas",
@@ -1509,7 +1509,7 @@
     "country": "United States",
     "totalplayers": "17",
     "subcountry": "",
-    "subplayers": ""
+    "subplayers": "1"
   },
   {
     "id": "kansas",

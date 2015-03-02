@@ -1,7 +1,7 @@
 @import (inline) "../../node_modules/leaflet/dist/leaflet.css";
 
 @mobile: ~"(max-width: 480px)";
-@top-height: 61px;
+@top-height: 52px;
 
 @sounders-blue: #005595;
 
@@ -47,9 +47,16 @@ body {
 }
 
 .badge-container {
+  .inner {
+    display: block;
+    margin: auto;
+    width: 971px;
+  }
+
   .badge {
     display: inline-block;
     cursor: pointer;
+    padding: 2px;
 
     img {
       height: 40px;
@@ -68,12 +75,12 @@ body {
 
   img {
     float: left;
-    height: 60px;
+    height: 75px;
   }
 
   .swatch, .label {
-    height: 12px;
-    width: 50px; 
+    height: 20px;
+    width: 15%; 
     float: left;
     text-align: center;
   }
@@ -93,6 +100,45 @@ body {
     }
     &.color-1 {
       background: #831213;
+    }
+  }
+}
+
+.toggle {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  width: 100%;
+
+  button {
+    display: none;
+    white-space: nowrap;
+    margin-right: 4px;
+    font-size: 14px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s linear;
+    background: white;
+    font-family: Helvetica, sans-serif;
+    padding: 4px 8px;
+
+    &:hover {
+      background: #DDD;
+    }
+
+    &.selected {
+      background: #444;
+      color: white;
+    }
+
+    @media @mobile {
+      font-size: 12px;
+      width: 40%;
+
+      &.desktop {
+        display: none;
+      }
     }
   }
 }

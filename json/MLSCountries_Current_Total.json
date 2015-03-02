@@ -21,6 +21,13 @@
     "subplayers": ""
   },
   {
+    "title": "United Kingdom",
+    "country": "United Kingdom",
+    "totalplayers": "19",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
     "title": "Canada",
     "country": "Canada",
     "totalplayers": "16",
@@ -38,13 +45,6 @@
     "title": "Jamaica",
     "country": "Jamaica",
     "totalplayers": "14",
-    "subcountry": "",
-    "subplayers": ""
-  },
-  {
-    "title": "United Kingdom",
-    "country": "United Kingdom",
-    "totalplayers": "19",
     "subcountry": "",
     "subplayers": ""
   },
@@ -112,6 +112,13 @@
     "subplayers": ""
   },
   {
+    "title": "Portugal",
+    "country": "Portugal",
+    "totalplayers": "5",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
     "title": "Caribbean",
     "country": "Caribbean",
     "totalplayers": "4",
@@ -131,13 +138,6 @@
     "totalplayers": "4",
     "subcountry": "Trinidad and Tobago",
     "subplayers": "1"
-  },
-  {
-    "title": "Portugal",
-    "country": "Portugal",
-    "totalplayers": "4",
-    "subcountry": "",
-    "subplayers": ""
   },
   {
     "title": "Nigeria",

@@ -6,38 +6,47 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href='http://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic|Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <%= t.include("partials/_adHead.html") %>
   </head>
 
   <body>
-    <div class="map-container"><div id="map"></div></div>
+    <div class="map-container">
+      <div id="map"></div>
+      <div class="toggle">
+        <button class="selected" data-team="seattle"><i class="fa fa-map-marker"></i> This Season</button>
+        <button data-team="sounders"><i class="fa fa-map-marker"></i> 2009 - Present</button>
+      </div>
+    </div>
 
     <div class="badge-container">
-      <div class="sounders-badge" data-team="sounders">*6 Years of Sounders*</div>
-      <div class="badge"><img src="./assets/chicago.gif" data-team="chicago"></img></div>
-      <div class="badge"><img src="./assets/colorado.gif" data-team="colorado"></img></div>
-      <div class="badge"><img src="./assets/columbus.gif" data-team="columbus"></img></div>
-      <div class="badge"><img src="./assets/dc.gif" data-team="dc"></img></div>
-      <div class="badge"><img src="./assets/dallas.gif" data-team="dallas"></img></div>
-      <div class="badge"><img src="./assets/houston.gif" data-team="houston"></img></div>
-      <div class="badge"><img src="./assets/kansas.gif" data-team="kansas"></img></div>
-      <div class="badge"><img src="./assets/la.gif" data-team="la"></img></div>
-      <div class="badge"><img src="./assets/montreal.gif" data-team="montreal"></img></div>
-      <div class="badge"><img src="./assets/newengland.gif" data-team="newengland"></img></div>
-      <div class="badge"><img src="./assets/nyc.gif" data-team="nyc"></img></div>
-      <div class="badge"><img src="./assets/redbulls.gif" data-team="redbulls"></img></div>
-      <div class="badge"><img src="./assets/orlando.gif" data-team="orlando"></img></div>
-      <div class="badge"><img src="./assets/philadelphia.gif" data-team="philadelphia"></img></div>
-      <div class="badge"><img src="./assets/portland.gif" data-team="portland"></img></div>
-      <div class="badge"><img src="./assets/saltlake.gif" data-team="saltlake"></img></div>
-      <div class="badge"><img src="./assets/sanjose.gif" data-team="sanjose"></img></div>
-      <div class="badge"><img src="./assets/seattle.gif" data-team="seattle"></img></div>
-      <div class="badge"><img src="./assets/toronto.gif" data-team="toronto"></img></div>
-      <div class="badge"><img src="./assets/vancouver.gif" data-team="vancouver"></img></div>
+      <div class="inner">
+        <div class="badge"><img src="./assets/mls.gif" data-team="mls"></img></div>
+        <div class="badge"><img src="./assets/seattle.gif" data-team="seattle"></img></div>
+        <div class="badge"><img src="./assets/chicago.gif" data-team="chicago"></img></div>
+        <div class="badge"><img src="./assets/colorado.gif" data-team="colorado"></img></div>
+        <div class="badge"><img src="./assets/columbus.gif" data-team="columbus"></img></div>
+        <div class="badge"><img src="./assets/dc.gif" data-team="dc"></img></div>
+        <div class="badge"><img src="./assets/dallas.gif" data-team="dallas"></img></div>
+        <div class="badge"><img src="./assets/houston.gif" data-team="houston"></img></div>
+        <div class="badge"><img src="./assets/kansas.gif" data-team="kansas"></img></div>
+        <div class="badge"><img src="./assets/la.gif" data-team="la"></img></div>
+        <div class="badge"><img src="./assets/montreal.gif" data-team="montreal"></img></div>
+        <div class="badge"><img src="./assets/newengland.gif" data-team="newengland"></img></div>
+        <div class="badge"><img src="./assets/nyc.gif" data-team="nyc"></img></div>
+        <div class="badge"><img src="./assets/redbulls.gif" data-team="redbulls"></img></div>
+        <div class="badge"><img src="./assets/orlando.gif" data-team="orlando"></img></div>
+        <div class="badge"><img src="./assets/philadelphia.gif" data-team="philadelphia"></img></div>
+        <div class="badge"><img src="./assets/portland.gif" data-team="portland"></img></div>
+        <div class="badge"><img src="./assets/saltlake.gif" data-team="saltlake"></img></div>
+        <div class="badge"><img src="./assets/sanjose.gif" data-team="sanjose"></img></div>
+        <div class="badge"><img src="./assets/toronto.gif" data-team="toronto"></img></div>
+        <div class="badge"><img src="./assets/vancouver.gif" data-team="vancouver"></img></div>
+      </div>
     </div>
 
     <div class="legend">
-      <img src="./assets/mls.gif"></img>
+      <div class="hero"><img src="./assets/mls.gif"></img></div>
       <div class="swatch color-5"></div>
       <div class="swatch color-4"></div>
       <div class="swatch color-3"></div>
