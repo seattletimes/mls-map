@@ -78,6 +78,11 @@ var restyle = function(feature) {
   };
 };
 
+$(".sounders-badge").click(function(e){
+  team = $(e.target).data("team");
+  worldLayer.setStyle(restyle);
+  map.closePopup();
+});
 $(".badge img").click(function(e){
   team = $(e.target).data("team");
   worldLayer.setStyle(restyle);
@@ -87,56 +92,64 @@ $(".badge img").click(function(e){
 var fillColor = function(teamId, country) {
   var source;
   if (teamId == "world") {
-    source = worldData;
+    if (worldData[country]) {
+      var players = parseInt(worldData[country].players);
+      if (players > 20) {
+        return world1;
+      } else if (players <= 20 && players > 12) {
+        return world2;
+      } else if (players <= 12 && players > 6) {
+        return world3;
+      } else if (players <= 6 && players > 2) {
+        return world4;
+      } else if (players <= 2 && players > 0) {
+        return world5;
+      }
+    } else {
+      return "white";
+    }
   } else if (teamId == "sounders") {
-    source = soundersData;
-  } else {
-    source = teamData[teamId];
-  }
-
-
-  if (source[country]) {
-    var players = parseInt(source[country].players);
-    if (players > 11) {
-      return mls1;
-    } else if (players <= 11 && players > 8) {
-      return mls2;
-    } else if (players <= 8 && players > 5) {
-      return mls3;
-    } else if (players <= 5 && players > 2) {
-      return mls4;
-    } else if (players <= 2 && players > 0) {
-      return mls5;
+    if (soundersData[country]) {
+      var players = parseInt(soundersData[country].players);
+      if (players > 11) {
+        return sounders1;
+      } else if (players <= 11 && players > 8) {
+        return sounders2;
+      } else if (players <= 8 && players > 5) {
+        return sounders3;
+      } else if (players <= 5 && players > 2) {
+        return sounders4;
+      } else if (players <= 2 && players > 0) {
+        return sounders5;
+      }
+    } else {
+      return "white";
     }
   } else {
-    return "white";
+    if (teamData[teamId][country]) {
+      var players = parseInt(teamData[teamId][country].players);
+      if (players > 11) {
+        return world1;
+      } else if (players <= 11 && players > 8) {
+        return world2;
+      } else if (players <= 8 && players > 5) {
+        return world3;
+      } else if (players <= 5 && players > 2) {
+        return world4;
+      } else if (players <= 2 && players > 0) {
+        return world5;
+      }
+    } else {
+      return "white";
+    }
   }
 };
 
-var fillSoundersColor = function(country) {
-  if (soundersData[country]) {
-    var players = parseInt(soundersData[country].players);
-    if (players > 11) {
-      return sounders1;
-    } else if (players <= 11 && players > 8) {
-      return sounders2;
-    } else if (players <= 8 && players > 5) {
-      return sounders3;
-    } else if (players <= 5 && players > 2) {
-      return sounders4;
-    } else if (players <= 2 && players > 0) {
-      return sounders5;
-    }
-  } else {
-    return "white";
-  }
-};
-
-var mls5 = "#e1a8a9";
-var mls4 = "#e16667";
-var mls3 = "#e32527";
-var mls2 = "#ab1b1d";
-var mls1 = "#831213";
+var world5 = "#e1a8a9";
+var world4 = "#e16667";
+var world3 = "#e32527";
+var world2 = "#ab1b1d";
+var world1 = "#831213";
 
 var sounders1 = "#23580a";
 var sounders2 = "#3d7a20";

@@ -1,8 +1,7 @@
 @import (inline) "../../node_modules/leaflet/dist/leaflet.css";
-@import "page";
 
 @mobile: ~"(max-width: 480px)";
-@top-height: 40px;
+@top-height: 61px;
 
 @sounders-blue: #005595;
 
@@ -48,17 +47,12 @@ body {
 }
 
 .badge-container {
-  position: absolute;
-  bottom: 50px; 
-  left: 100px;
-  padding: 0 100px;
-
   .badge {
     display: inline-block;
     cursor: pointer;
 
     img {
-      height: 50px;
+      height: 40px;
     }
   }
 }
@@ -67,44 +61,38 @@ body {
 .legend {
   position: absolute;
   background: white;
-  bottom: 30px;
-  left: 30px;
-  border-radius: 2px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   font-size: 14px;
-  padding: 10px 10px 10px 36px;
 
-  .label {
-    transform: rotate(270deg);
-    position: absolute;
-    top: 44%;
-    left: -30px;
+  img {
+    float: left;
+    height: 60px;
+  }
+
+  .swatch, .label {
+    height: 12px;
+    width: 50px; 
+    float: left;
     text-align: center;
   }
 
-  .inner {
-    padding: 5px;
-
-    .swatch {
-      height: 12px;
-      width: 12px; 
-      display: inline-block;
-      border-radius: 2px;
-
-      &.color-1 {
-        background: #23580a;
-      }
-      &.color-2 {
-        background: #3d7a20;
-      }
-      &.color-3 {
-        background: #5d9741;
-      }
-      &.color-4 {
-        background: #80b069;
-      }
-      &.color-5 {
-        background: #bedbb0;
-      }
+  .swatch {
+    &.color-5 {
+      background: #e1a8a9;
+    }
+    &.color-4 {
+      background: #e16667;
+    }
+    &.color-3 {
+      background: #e32527;
+    }
+    &.color-2 {
+      background: #ab1b1d;
+    }
+    &.color-1 {
+      background: #831213;
     }
   }
 }
