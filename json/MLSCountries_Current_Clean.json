@@ -153,6 +153,33 @@
     "subplayers": ""
   },
   {
+    "id": "columbus",
+    "title": "columbus",
+    "team": "Columbus Crew",
+    "country": "Sierra Leone",
+    "totalplayers": "1",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
+    "id": "columbus",
+    "title": "columbus",
+    "team": "Columbus Crew",
+    "country": "Jamaica",
+    "totalplayers": "1",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
+    "id": "columbus",
+    "title": "columbus",
+    "team": "Columbus Crew",
+    "country": "Israel",
+    "totalplayers": "1",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
     "id": "dc",
     "title": "dc",
     "team": "D.C. United",
@@ -319,6 +346,15 @@
     "title": "montreal",
     "team": "Montreal Impact",
     "country": "Uruguay",
+    "totalplayers": "1",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
+    "id": "montreal",
+    "title": "montreal",
+    "team": "Montreal Impact",
+    "country": "Jamaica",
     "totalplayers": "1",
     "subcountry": "",
     "subplayers": ""
@@ -786,6 +822,15 @@
     "id": "colorado",
     "title": "colorado",
     "team": "Colorado Rapids",
+    "country": "Argentina",
+    "totalplayers": "2",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
+    "id": "colorado",
+    "title": "colorado",
+    "team": "Colorado Rapids",
     "country": "Uruguay",
     "totalplayers": "1",
     "subcountry": "",
@@ -832,15 +877,6 @@
     "title": "colorado",
     "team": "Colorado Rapids",
     "country": "Sweden",
-    "totalplayers": "1",
-    "subcountry": "",
-    "subplayers": ""
-  },
-  {
-    "id": "colorado",
-    "title": "colorado",
-    "team": "Colorado Rapids",
-    "country": "Argentina",
     "totalplayers": "1",
     "subcountry": "",
     "subplayers": ""
@@ -1597,7 +1633,7 @@
     "title": "vancouver",
     "team": "Vancouver Whitecaps",
     "country": "United States",
-    "totalplayers": "4",
+    "totalplayers": "3",
     "subcountry": "",
     "subplayers": ""
   },

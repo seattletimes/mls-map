@@ -2,21 +2,21 @@
   {
     "title": "United States",
     "country": "United States",
-    "totalplayers": "284",
+    "totalplayers": "283",
     "subcountry": "United States",
-    "subplayers": "283"
+    "subplayers": "282"
   },
   {
     "title": "United States",
     "country": "United States",
-    "totalplayers": "284",
+    "totalplayers": "283",
     "subcountry": "Guam",
     "subplayers": "1"
   },
   {
     "title": "Argentina",
     "country": "Argentina",
-    "totalplayers": "20",
+    "totalplayers": "21",
     "subcountry": "",
     "subplayers": ""
   },
@@ -35,16 +35,16 @@
     "subplayers": ""
   },
   {
-    "title": "Brazil",
-    "country": "Brazil",
-    "totalplayers": "15",
+    "title": "Jamaica",
+    "country": "Jamaica",
+    "totalplayers": "16",
     "subcountry": "",
     "subplayers": ""
   },
   {
-    "title": "Jamaica",
-    "country": "Jamaica",
-    "totalplayers": "14",
+    "title": "Brazil",
+    "country": "Brazil",
+    "totalplayers": "15",
     "subcountry": "",
     "subplayers": ""
   },
@@ -245,6 +245,13 @@
     "subplayers": ""
   },
   {
+    "title": "Sierra Leone",
+    "country": "Sierra Leone",
+    "totalplayers": "2",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
     "title": "Zimbabwe",
     "country": "Zimbabwe",
     "totalplayers": "1",
@@ -268,13 +275,6 @@
   {
     "title": "Slovakia",
     "country": "Slovakia",
-    "totalplayers": "1",
-    "subcountry": "",
-    "subplayers": ""
-  },
-  {
-    "title": "Sierra Leone",
-    "country": "Sierra Leone",
     "totalplayers": "1",
     "subcountry": "",
     "subplayers": ""
@@ -429,6 +429,13 @@
   {
     "title": "Algeria",
     "country": "Algeria",
+    "totalplayers": "1",
+    "subcountry": "",
+    "subplayers": ""
+  },
+  {
+    "title": "Israel",
+    "country": "Israel",
     "totalplayers": "1",
     "subcountry": "",
     "subplayers": ""
