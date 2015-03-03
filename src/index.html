@@ -25,11 +25,13 @@
   json.MLSCountries_Current_Clean.forEach(function(t) {
     var id = t.id;
     var team = t.team;
+    var color = t.color;
     var country = t.country;
     var players = t.totalplayers;
 
     if (!teamData[id]) { teamData[id] = {} }
     teamData[id].team = team;
+    teamData[id].color = color;
     if (!teamData[id][country]) { teamData[id][country] = {} }
     teamData[id][country].players = players;
 

@@ -103,67 +103,69 @@ $(".badge img").click(function(e){
 var fillColor = function(teamId, country) {
   var source;
   if (teamId == "mls") {
+    // All teams, 2015
     if (worldData[country]) {
       var players = parseInt(worldData[country].players);
       if (players > 20) {
-        return mls1;
+        return colors.red[4];
       } else if (players <= 20 && players > 12) {
-        return mls2;
+        return colors.red[3];
       } else if (players <= 12 && players > 6) {
-        return mls3;
+        return colors.red[2];
       } else if (players <= 6 && players > 2) {
-        return mls4;
+        return colors.red[1];
       } else if (players <= 2 && players > 0) {
-        return mls5;
+        return colors.red[0];
       }
     } else {
-      return "#EEE";
+      return "white";
     }
   } else if (teamId == "sounders") {
+    // Sounders, 2009-2015
     if (soundersData[country]) {
       var players = parseInt(soundersData[country].players);
       if (players > 11) {
-        return sounders1;
+        return colors.green[4];
       } else if (players <= 11 && players > 8) {
-        return sounders2;
+        return colors.green[3];
       } else if (players <= 8 && players > 5) {
-        return sounders3;
+        return colors.green[2];
       } else if (players <= 5 && players > 2) {
-        return sounders4;
+        return colors.green[1];
       } else if (players <= 2 && players > 0) {
-        return sounders5;
+        return colors.green[0];
       }
     } else {
-      return "#EEE";
+      return "white";
     }
   } else {
     if (teamData[teamId][country]) {
+      // Specific team, 2015
       var players = parseInt(teamData[teamId][country].players);
+      var color = colors[teamData[teamId].color];
       if (players > 11) {
-        return mls1;
+        return color[4];
       } else if (players <= 11 && players > 8) {
-        return mls2;
+        return color[3];
       } else if (players <= 8 && players > 5) {
-        return mls3;
+        return color[2];
       } else if (players <= 5 && players > 2) {
-        return mls4;
+        return color[1];
       } else if (players <= 2 && players > 0) {
-        return mls5;
+        return color[0];
       }
     } else {
-      return "#EEE";
+      return "white";
     }
   }
 };
 
-var mls5 = "#e1a8a9";
-var mls4 = "#e16667";
-var mls3 = "#e32527";
-var mls2 = "#ab1b1d";
-var mls1 = "#831213";
-
-var sounders1 = "#23580a";
-var sounders2 = "#3d7a20";
-var sounders3 = "#5d9741";
-var sounders4 = "#80b069";
-var sounders5 = "#bedbb0";
+// first color is lightest, last is darkest
+var colors = {
+  "red": [ "#e1a8a9", "#e16667", "#e32527", "#ab1b1d", "#831213" ],
+  "green": [ "#bedbb0", "#80b069", "#5d9741", "#3d7a20", "#23580a" ],
+  "yellow": [ "#ffec9f", "#ffe681", "#ffdb4b", "#c5a524", "#987900" ],
+  "orange": [ "#f4d3c9", "#f4af9a", "#f28260", "#f46b40", "#f44d19" ],
+  "gray": [ "#bbb", "#999", "#777", "#555", "#333" ],
+  "purple": [ "#d3c5e1", "#936fb8", "#7346a1", "#491d76", "#3c0f69" ]
+};
