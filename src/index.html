@@ -65,35 +65,35 @@
     <div class="badge-container">
       <div class="inner">
           <div class="badge">
-            <img src="./assets/mls.gif" data-team="mls"></img>
+            <img src="./assets/mls.gif" data-team="mls" data-name="MLS"></img>
           </div>
-        <% for (var team in teamData) { %>
+        <% for (var t in teamData) { %>
           <div class="badge">
-            <img src="./assets/<%= team %>.gif" data-team="<%= team %>"></img>
+            <img src="./assets/<%= t %>.gif" data-team="<%= t %>" data-name="<%= teamData[t].team %>"></img>
           </div>
         <% } %>
       </div>
     </div>
 
     <div class="legend">
-      <div class="hero"><img src="./assets/mls.gif"></img></div>
-      <div class="swatch color-5"></div>
-      <div class="swatch color-4"></div>
-      <div class="swatch color-3"></div>
-      <div class="swatch color-2"></div>
-      <div class="swatch color-1"></div>
-      <br>
-      <div class="label">1-2</div>
-      <div class="label">3-5</div>
-      <div class="label">6-8</div>
-      <div class="label">9-11</div>
-      <div class="label">12+</div>
+      <div class="hero">
+        <div class="team-label">MLS</div>
+        <img src="./assets/mls.gif"></img>
+      </div>
+      <div class="outer">
+        <div class="number-label">Number of Players</div>
+        <div class="inner"><div class="swatch color-5"></div><div class="label">1-2</div></div>
+        <div class="inner"><div class="swatch color-4"></div><div class="label">3-5</div></div>
+        <div class="inner"><div class="swatch color-3"></div><div class="label">6-8</div></div>
+        <div class="inner"><div class="swatch color-2"></div><div class="label">9-11</div></div>
+        <div class="inner"><div class="swatch color-1"></div><div class="label">12+</div></div>
+      </div>
     </div>
 
     <script>
 
       var soundersData = <%= JSON.stringify(soundersData) %>;
-      var teamData = <%= JSON.stringify(teamData) %>;
+      var teamData = window.teamData = <%= JSON.stringify(teamData) %>;
       var worldData = <%= JSON.stringify(worldData) %>;
       
     </script>

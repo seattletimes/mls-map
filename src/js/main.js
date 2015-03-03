@@ -95,7 +95,9 @@ $(".badge img").click(function(e){
   } else {
     $(".toggle button").hide();
   }
-  $(".hero").html("<img src='./assets/" + team + ".gif'></img>")
+  var name = $(e.target).data("name");
+  console.log(name)
+  $(".hero").html("<div>" + name + "</div><img src='./assets/" + team + ".gif'></img>");
 });
 
 var fillColor = function(teamId, country) {

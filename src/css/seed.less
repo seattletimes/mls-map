@@ -73,25 +73,47 @@ body {
 // legend
 .legend {
   position: absolute;
-  background: white;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  bottom: 30px;
+  left: 30px;
+  border-radius: 2px;
   font-size: 14px;
+  padding: 10px;
 
-  img {
+  .hero {
     float: left;
-    height: 75px;
-  }
 
-  .swatch, .label {
-    height: 20px;
-    width: 15%; 
-    float: left;
-    text-align: center;
+    img {
+      height: 75px;
+    }
   }
 
   .swatch {
+
+    // height: 20px;
+    // width: 15%; 
+    // float: left;
+    // text-align: center;
+  }
+
+  .outer {
+    display: inline-block;
+    padding-left: 10px;
+
+    .number-label {
+      font-weight: bold;
+    }
+  }
+
+  .inner {
+    padding: 3px 0;
+  }
+
+  .swatch {
+    height: 12px;
+    width: 24px; 
+    display: inline-block;
+
     &.color-5 {
       background: #e1a8a9;
     }
@@ -107,6 +129,11 @@ body {
     &.color-1 {
       background: #831213;
     }
+  }
+
+  .label {
+    display: inline-block;
+    padding-left: 5px;
   }
 }
 
