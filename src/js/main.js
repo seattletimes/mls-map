@@ -37,9 +37,10 @@ var request = $.ajax({
 });
 
 var openTooltip = function(event){
+  var source;
   var country = event.target.feature.properties.name;
 
-  if (team == "world") {
+  if (team == "mls") {
     source = worldData;
   } else if (team == "sounders") {
     source = soundersData;

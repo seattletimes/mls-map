@@ -1,4 +1,47 @@
-<!doctype html>
+<%
+  var parseData = function(data) {
+    var dataObj = {};
+    data.forEach(function(c) {
+      var country = c.country;
+      var players = c.totalplayers;
+      if (!dataObj[country]) { dataObj[country] = {} }
+      dataObj[country].players = players;
+
+      if (c.subcountry && c.subplayers) { 
+        var subCountry = c.subcountry;
+        var subPlayers = c.subplayers;
+
+        if (!dataObj[country].subData) { dataObj[country].subData = {} }
+        dataObj[country].subData[subCountry] = subPlayers;
+      }
+    });
+    return dataObj;
+  };
+
+  var soundersData = parseData(json.MLSCountries_Sounders_Total);
+  var worldData = parseData(json.MLSCountries_Current_Total);
+
+  var teamData = {};
+  json.MLSCountries_Current_Clean.forEach(function(t) {
+    var id = t.id;
+    var team = t.team;
+    var country = t.country;
+    var players = t.totalplayers;
+
+    if (!teamData[id]) { teamData[id] = {} }
+    teamData[id].team = team;
+    if (!teamData[id][country]) { teamData[id][country] = {} }
+    teamData[id][country].players = players;
+
+    if (t.subcountry && t.subplayers) { 
+      var subCountry = t.subcountry;
+      var subPlayers = t.subplayers;
+
+      if (!teamData[id][country].subData) { teamData[id][country].subData = {} }
+      teamData[id][country].subData[subCountry] = subPlayers;
+    }
+  });
+%><!doctype html>
 <html>
   <head>
     <title><%= json.project.title %></title>
@@ -21,27 +64,14 @@
 
     <div class="badge-container">
       <div class="inner">
-        <div class="badge"><img src="./assets/mls.gif" data-team="mls"></img></div>
-        <div class="badge"><img src="./assets/seattle.gif" data-team="seattle"></img></div>
-        <div class="badge"><img src="./assets/chicago.gif" data-team="chicago"></img></div>
-        <div class="badge"><img src="./assets/colorado.gif" data-team="colorado"></img></div>
-        <div class="badge"><img src="./assets/columbus.gif" data-team="columbus"></img></div>
-        <div class="badge"><img src="./assets/dc.gif" data-team="dc"></img></div>
-        <div class="badge"><img src="./assets/dallas.gif" data-team="dallas"></img></div>
-        <div class="badge"><img src="./assets/houston.gif" data-team="houston"></img></div>
-        <div class="badge"><img src="./assets/kansas.gif" data-team="kansas"></img></div>
-        <div class="badge"><img src="./assets/la.gif" data-team="la"></img></div>
-        <div class="badge"><img src="./assets/montreal.gif" data-team="montreal"></img></div>
-        <div class="badge"><img src="./assets/newengland.gif" data-team="newengland"></img></div>
-        <div class="badge"><img src="./assets/nyc.gif" data-team="nyc"></img></div>
-        <div class="badge"><img src="./assets/redbulls.gif" data-team="redbulls"></img></div>
-        <div class="badge"><img src="./assets/orlando.gif" data-team="orlando"></img></div>
-        <div class="badge"><img src="./assets/philadelphia.gif" data-team="philadelphia"></img></div>
-        <div class="badge"><img src="./assets/portland.gif" data-team="portland"></img></div>
-        <div class="badge"><img src="./assets/saltlake.gif" data-team="saltlake"></img></div>
-        <div class="badge"><img src="./assets/sanjose.gif" data-team="sanjose"></img></div>
-        <div class="badge"><img src="./assets/toronto.gif" data-team="toronto"></img></div>
-        <div class="badge"><img src="./assets/vancouver.gif" data-team="vancouver"></img></div>
+          <div class="badge">
+            <img src="./assets/mls.gif" data-team="mls"></img>
+          </div>
+        <% for (var team in teamData) { %>
+          <div class="badge">
+            <img src="./assets/<%= team %>.gif" data-team="<%= team %>"></img>
+          </div>
+        <% } %>
       </div>
     </div>
 
@@ -61,56 +91,11 @@
     </div>
 
     <script>
-      <%
-        var parseData = function(data) {
-          var dataObj = {};
-          data.forEach(function(c) {
-            var country = c.country;
-            var players = c.totalplayers;
-            if (!dataObj[country]) { dataObj[country] = {} }
-            dataObj[country].players = players;
-
-            if (c.subcountry && c.subplayers) { 
-              var subCountry = c.subcountry;
-              var subPlayers = c.subplayers;
-
-              if (!dataObj[country].subData) { dataObj[country].subData = {} }
-              dataObj[country].subData[subCountry] = subPlayers;
-            }
-          });
-          return dataObj;
-        };
-
-        var soundersData = parseData(json.MLSCountries_Sounders_Total);
-        var worldData = parseData(json.MLSCountries_Current_Total);
-      %>
-      <%
-        var teamData = {};
-        json.MLSCountries_Current_Clean.forEach(function(t) {
-          var id = t.id;
-          var team = t.team;
-          var country = t.country;
-          var players = t.totalplayers;
-
-          if (!teamData[id]) { teamData[id] = {} }
-          teamData[id].team = team;
-          if (!teamData[id][country]) { teamData[id][country] = {} }
-          teamData[id][country].players = players;
-
-          if (t.subcountry && t.subplayers) { 
-            var subCountry = t.subcountry;
-            var subPlayers = t.subplayers;
-
-            if (!teamData[id][country].subData) { teamData[id][country].subData = {} }
-            teamData[id][country].subData[subCountry] = subPlayers;
-          }
-        });
-      %>
 
       var soundersData = <%= JSON.stringify(soundersData) %>;
       var teamData = <%= JSON.stringify(teamData) %>;
       var worldData = <%= JSON.stringify(worldData) %>;
-     
+      
     </script>
     <script src="app.js"></script>
     <%= json.project.production ? t.include("partials/_adFoot.html") : "" %>
