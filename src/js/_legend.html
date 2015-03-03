@@ -1,0 +1,10 @@
+  <div class="hero">
+    <div class="team-label">{{teamLabel}}</div>
+    <img src="./assets/{{img}}.gif"></img>
+  </div>
+  <div class="outer">
+    <div class="number-label">Number of Players</div>
+    {{#colors}}
+      <div class="inner"><div class="swatch" style="background: {{.}}"></div><div class="label">1-2</div></div>
+    {{/colors}}
+  </div>

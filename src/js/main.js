@@ -4,11 +4,13 @@ var $ = require("jquery");
 var L = require("leaflet");
 var ich = require("icanhaz");
 var popupHTML = require("./_popup.html");
+var legendHTML = require("./_legend.html");
 
 var team = "mls";
 var worldLayer;
 
 ich.addTemplate("popup", popupHTML);
+ich.addTemplate("legend", legendHTML);
 
 var map = L.map('map');
 map.fitBounds([
@@ -34,6 +36,12 @@ var request = $.ajax({
   })
 
   worldLayer.addTo(map);
+  
+  $(".legend").html(ich.legend({
+    teamLabel: "MLS", 
+    img: "mls", 
+    colors: colors.red
+  })); 
 });
 
 var openTooltip = function(event){
@@ -96,7 +104,6 @@ $(".badge img").click(function(e){
     $(".toggle button").hide();
   }
   var name = $(e.target).data("name");
-  console.log(name)
   $(".hero").html("<div>" + name + "</div><img src='./assets/" + team + ".gif'></img>");
 });
 
@@ -104,11 +111,18 @@ var fillColor = function(teamId, country) {
   var source;
   if (teamId == "mls") {
     // All teams, 2015
+
+    $(".legend").html(ich.legend({
+      teamLabel: "MLS", 
+      img: "mls", 
+      colors: colors.red
+    })); 
+
     if (worldData[country]) {
       var players = parseInt(worldData[country].players);
-      if (players > 20) {
+      if (players > 21) {
         return colors.red[4];
-      } else if (players <= 20 && players > 12) {
+      } else if (players <= 21 && players > 12) {
         return colors.red[3];
       } else if (players <= 12 && players > 6) {
         return colors.red[2];
@@ -122,6 +136,13 @@ var fillColor = function(teamId, country) {
     }
   } else if (teamId == "sounders") {
     // Sounders, 2009-2015
+
+    $(".legend").html(ich.legend({
+      teamLabel: "Seattle Sounders", 
+      img: "seattle", 
+      colors: colors.green
+    })); 
+
     if (soundersData[country]) {
       var players = parseInt(soundersData[country].players);
       if (players > 11) {
@@ -143,6 +164,13 @@ var fillColor = function(teamId, country) {
       // Specific team, 2015
       var players = parseInt(teamData[teamId][country].players);
       var color = colors[teamData[teamId].color];
+
+      $(".legend").html(ich.legend({
+        teamLabel: teamData[teamId].team, 
+        img: teamData[teamId].id, 
+        colors: color
+      }));
+
       if (players > 11) {
         return color[4];
       } else if (players <= 11 && players > 8) {
