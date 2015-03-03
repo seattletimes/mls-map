@@ -103,8 +103,6 @@ $(".badge img").click(function(e){
   } else {
     $(".toggle button").hide();
   }
-  var name = $(e.target).data("name");
-  $(".hero").html("<div>" + name + "</div><img src='./assets/" + team + ".gif'></img>");
 });
 
 var fillColor = function(teamId, country) {
@@ -167,7 +165,7 @@ var fillColor = function(teamId, country) {
 
       $(".legend").html(ich.legend({
         teamLabel: teamData[teamId].team, 
-        img: teamData[teamId].id, 
+        img: teamId, 
         colors: color
       }));
 
