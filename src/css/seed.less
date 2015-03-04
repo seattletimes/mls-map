@@ -58,10 +58,15 @@ body {
 }
 
 .badge-container {
+
   .inner {
     display: block;
     margin: auto;
     text-align: center;
+
+    @media @mobile {
+      display: none;
+    }
 
     .badge-group {
       display: inline-block;
@@ -83,6 +88,19 @@ body {
       height: 40px;
     }
   }
+
+  .mobile-menu {
+    display: none;
+
+    select {
+      width: 100%;
+      font-size: 15px;
+    }
+
+    @media @mobile {
+      display: block;
+    }
+  }
 }
 
 // legend
@@ -94,6 +112,11 @@ body {
   border-radius: 2px;
   font-size: 14px;
   padding: 10px;
+
+  @media @mobile {
+    display: block;
+    position: static;
+  }
 
   .hero {
     float: left;

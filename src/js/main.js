@@ -1,12 +1,13 @@
 //Use CommonJS style via browserify to load other modules
 
+require("component-responsive-frame/child");
 var $ = require("jquery");
 var L = require("leaflet");
 var ich = require("icanhaz");
 var popupHTML = require("./_popup.html");
 var legendHTML = require("./_legend.html");
 
-var team = "mls";
+var team = $(".mobile-menu select").val() || "mls";
 var worldLayer;
 
 ich.addTemplate("popup", popupHTML);
@@ -36,12 +37,6 @@ var request = $.ajax({
   })
 
   worldLayer.addTo(map);
-  
-  $(".legend").html(ich.legend({
-    teamLabel: "MLS", 
-    img: "mls", 
-    colors: colors.red
-  })); 
 });
 
 var openTooltip = function(event){
@@ -94,8 +89,9 @@ $(".toggle button").click(function(e){
   $(".toggle button.selected").removeClass("selected");
   $(e.target).addClass("selected");
 });
-$(".badge img").click(function(e){
-  team = $(e.target).data("team");
+
+var changeTeam = function(t) {
+  team = t;
   worldLayer.setStyle(restyle);
   map.closePopup();
   if (team == "seattle") {
@@ -103,6 +99,14 @@ $(".badge img").click(function(e){
   } else {
     $(".toggle button").hide();
   }
+}
+
+$(".badge img").click(function(e){
+  changeTeam(e.target.getAttribute("data-team"));
+});
+
+$(".mobile-menu select").change(function() {
+  changeTeam(this.value);
 });
 
 var fillColor = function(teamId, country) {

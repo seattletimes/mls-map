@@ -44,6 +44,8 @@
       teamData[id][country].subData[subCountry] = subPlayers;
     }
   });
+
+  var teams = Object.keys(teamData).sort();
 %><!doctype html>
 <html>
   <head>
@@ -53,46 +55,57 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <link href='http://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic|Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <%= t.include("partials/_adHead.html") %>
   </head>
 
   <body>
 
-    <div class="badge-container">
-      <div class="inner">
-        <div class="badge-group">
-          <div class="badge">
-            <img src="./assets/mls.gif" data-team="mls" data-name="MLS"></img>
-          </div>
-        <% var index = 0 %>
-        <% for (var t in teamData) { %>
-          <% index++ %>
-          <% if (index % 3 == 0) { %>
-            <div class="badge-group">
-          <% } %>
-            <div class="badge">
-              <img src="./assets/<%= t %>.gif" data-team="<%= t %>" data-name="<%= teamData[t].team %>"></img>
-            </div>
-          <% if (index % 3 == 2) { %>
-            </div>
-          <% } %>
-        <% } %>
-      </div>
-    </div>
+    <responsive-child interval=300>
 
-    <div class="map-container">
-      <div class="aspect-ratio-outer">
-        <div class="aspect-ratio-inner">
-          <div id="map"></div>
-          <div class="toggle">
-            <button class="selected" data-team="seattle"><i class="fa fa-map-marker"></i> This Season</button>
-            <button data-team="sounders"><i class="fa fa-map-marker"></i> 2009 - Present</button>
+      <div class="badge-container">
+        <div class="inner">
+          <div class="badge-group">
+            <div class="badge">
+              <img src="./assets/mls.gif" data-team="mls" data-name="MLS"></img>
+            </div>
+          <% var index = 0 %>
+          <% teams.forEach(function(t) { %>
+            <% index++ %>
+            <% if (index % 3 == 0) { %>
+              <div class="badge-group">
+            <% } %>
+              <div class="badge">
+                <img src="./assets/<%= t %>.gif" data-team="<%= t %>" data-name="<%= teamData[t].team %>"></img>
+              </div>
+            <% if (index % 3 == 2) { %>
+              </div>
+            <% } %>
+          <% }) %>
+        </div>
+        <div class="mobile-menu">
+          <select>
+            <option value="mls">MLS</option>
+            <% teams.forEach(function(t) { %>
+            <option value="<%= t %>"><%= teamData[t].team %></option>
+            <% }) %>
+          </select>
+        </div>
+      </div>
+
+      <div class="map-container">
+        <div class="aspect-ratio-outer">
+          <div class="aspect-ratio-inner">
+            <div id="map"></div>
+            <div class="toggle">
+              <button class="selected" data-team="seattle"><i class="fa fa-map-marker"></i> This Season</button>
+              <button data-team="sounders"><i class="fa fa-map-marker"></i> 2009 - Present</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="legend"></div>
+      <div class="legend"></div>
+
+    </responsive-child>
 
     <script>
 
