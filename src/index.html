@@ -56,24 +56,38 @@
   </head>
 
   <body>
-    <div class="map-container">
-      <div id="map"></div>
-      <div class="toggle">
-        <button class="selected" data-team="seattle"><i class="fa fa-map-marker"></i> This Season</button>
-        <button data-team="sounders"><i class="fa fa-map-marker"></i> 2009 - Present</button>
-      </div>
-    </div>
 
     <div class="badge-container">
       <div class="inner">
+        <div class="badge-group">
           <div class="badge">
             <img src="./assets/mls.gif" data-team="mls" data-name="MLS"></img>
           </div>
+        <% var index = 0 %>
         <% for (var t in teamData) { %>
-          <div class="badge">
-            <img src="./assets/<%= t %>.gif" data-team="<%= t %>" data-name="<%= teamData[t].team %>"></img>
-          </div>
+          <% index++ %>
+          <% if (index % 3 == 0) { %>
+            <div class="badge-group">
+          <% } %>
+            <div class="badge">
+              <img src="./assets/<%= t %>.gif" data-team="<%= t %>" data-name="<%= teamData[t].team %>"></img>
+            </div>
+          <% if (index % 3 == 2) { %>
+            </div>
+          <% } %>
         <% } %>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <div class="aspect-ratio-outer">
+        <div class="aspect-ratio-inner">
+          <div id="map"></div>
+          <div class="toggle">
+            <button class="selected" data-team="seattle"><i class="fa fa-map-marker"></i> This Season</button>
+            <button data-team="sounders"><i class="fa fa-map-marker"></i> 2009 - Present</button>
+          </div>
+        </div>
       </div>
     </div>
 

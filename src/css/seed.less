@@ -2,6 +2,7 @@
 
 @mobile: ~"(max-width: 480px)";
 @top-height: 52px;
+@aspect-ratio: 7/10;
 
 @sounders-blue: #005595;
 
@@ -18,15 +19,25 @@ body {
 }
 
 .map-container {
-  width: 100%;
-  height: calc(~"100% - @{top-height}");
-  top: @top-height;
-  position: fixed;
+  position: relative;
 }
 
-#map {
-  height: 100%;
+.aspect-ratio-outer {
   width: 100%;
+  position: relative;
+
+  .aspect-ratio-inner {
+    padding-bottom: percentage(@aspect-ratio);
+    position: relative;
+  }
+
+  #map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .leaflet-container {
@@ -50,7 +61,11 @@ body {
   .inner {
     display: block;
     margin: auto;
-    width: 971px;
+    text-align: center;
+
+    .badge-group {
+      display: inline-block;
+    }
   }
 
   .label {
