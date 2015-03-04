@@ -1,6 +1,7 @@
 <%
   var parseData = function(data) {
     var dataObj = {};
+    console.log(data, typeof data);
     data.forEach(function(c) {
       var country = c.country;
       var players = c.totalplayers;
@@ -18,8 +19,11 @@
     return dataObj;
   };
 
-  var soundersData = parseData(json.MLSCountries_Sounders_Total);
-  var worldData = parseData(json.MLSCountries_Current_Total);
+  console.log(json.MLSCountries_Sounders_Total);
+
+  var soundersData = parseData(json.MLSCountries_Sounders_total);
+  var worldData = parseData(json.MLSCountries_Current_total);
+
 
   var teamData = {};
   json.MLSCountries_Current_Clean.forEach(function(t) {
