@@ -101,15 +101,20 @@ soundersTime.click(function(e){
 
 // first color is lightest, last is darkest
 var colors = {
-  "red": [ "#e1a8a9", "#e16667", "#e32527", "#ab1b1d", "#831213" ],
-  "green": [ "#bedbb0", "#80b069", "#5d9741", "#3d7a20", "#23580a" ],
-  "yellow": [ "#ffec9f", "#ffe681", "#ffdb4b", "#c5a524", "#987900" ],
-  "orange": [ "#f4d3c9", "#f4af9a", "#f28260", "#f46b40", "#f44d19" ],
-  "gray": [ "#bbb", "#999", "#777", "#555", "#333" ],
-  "purple": [ "#d3c5e1", "#936fb8", "#7346a1", "#491d76", "#3c0f69" ]
+  red: [ "#e1a8a9", "#e16667", "#e32527", "#ab1b1d", "#831213" ],
+  green: [ "#bedbb0", "#80b069", "#5d9741", "#3d7a20", "#23580a" ],
+  yellow: [ "#ffec9f", "#ffe681", "#ffdb4b", "#c5a524", "#987900" ],
+  orange: [ "#f4d3c9", "#f4af9a", "#f28260", "#f46b40", "#f44d19" ],
+  gray: [ "#bbb", "#999", "#777", "#555", "#333" ],
+  purple: [ "#d3c5e1", "#936fb8", "#7346a1", "#491d76", "#3c0f69" ]
 };
 
-//build team min-max ranges
+//team scales
+var scales = {
+  mls: [0, 2, 6, 12, 21],
+  sounders: [0, 2, 5, 8, 11],
+  default: [0, 2, 5, 8, 11]
+};
 
 var changeTeam = function(t) {
   team = t || team;
@@ -141,64 +146,27 @@ $(".mobile-menu select").change(function() {
 });
 
 var fillColor = function(teamId, country) {
-  var source;
+  var data;
+  var color;
   if (teamId == "mls") {
-    // All teams, 2015
-
-    if (worldData[country]) {
-      var players = parseInt(worldData[country].players);
-      if (players > 21) {
-        return colors.red[4];
-      } else if (players <= 21 && players > 12) {
-        return colors.red[3];
-      } else if (players <= 12 && players > 6) {
-        return colors.red[2];
-      } else if (players <= 6 && players > 2) {
-        return colors.red[1];
-      } else if (players <= 2 && players > 0) {
-        return colors.red[0];
-      }
-    } else {
-      return "white";
-    }
+    data = worldData;
+    color = "red";
   } else if (teamId == "sounders") {
-    // Sounders, 2009-2015
-
-    if (soundersData[country]) {
-      var players = parseInt(soundersData[country].players);
-      if (players > 11) {
-        return colors.green[4];
-      } else if (players <= 11 && players > 8) {
-        return colors.green[3];
-      } else if (players <= 8 && players > 5) {
-        return colors.green[2];
-      } else if (players <= 5 && players > 2) {
-        return colors.green[1];
-      } else if (players <= 2 && players > 0) {
-        return colors.green[0];
-      }
-    } else {
-      return "white";
-    }
+    data = soundersData;
+    color = "green";
   } else {
-    if (teamData[teamId].countries[country]) {
-      // Specific team, 2015
-      var players = parseInt(teamData[teamId].countries[country].players);
-      var color = colors[teamData[teamId].color];
-
-      if (players > 11) {
-        return color[4];
-      } else if (players <= 11 && players > 8) {
-        return color[3];
-      } else if (players <= 8 && players > 5) {
-        return color[2];
-      } else if (players <= 5 && players > 2) {
-        return color[1];
-      } else if (players <= 2 && players > 0) {
-        return color[0];
-      }
-    } else {
-      return "white";
-    }
+    data = teamData[teamId].countries;
+    color = teamData[teamId].color;
   }
+
+  if (!data[country]) return "white";
+
+  var scale = scales[teamId] || scales.default;
+  var palette = colors[color];
+  var players = worldData[country].players * 1;
+  for (var i = scale.length - 1; i >= 0; i--) {
+    if (players > scale[i]) return palette[i];
+  }
+
+  return "black";
 };
