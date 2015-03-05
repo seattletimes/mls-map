@@ -79,6 +79,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 0, 0, .2);
   position: relative;
   z-index: 99;
+  padding: 8px;
 
   .inner {
     display: none;
@@ -111,7 +112,6 @@ body {
   }
 
   .mobile-menu {
-    padding: 8px;
 
     h2 {
       margin: 0;
@@ -145,6 +145,10 @@ body {
     @media @mobile {
       display: block;
     }
+  }
+
+  .note {
+    font-size: 14px;
   }
 }
 
@@ -214,11 +218,12 @@ body {
 }
 
 .toggle {
-  display: inline-block;
+  display: none; //hidden while totals are sorted out
+  // display: inline-block;
   vertical-align: middle;
 
   @media @mobile {
-    display: block;
+    // display: block; //hidden while totals are sorted out
     padding: 8px 0;
   }
 
