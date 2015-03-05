@@ -5,8 +5,8 @@
       "path": "green-glitter"
     },
     "live": {
-      "bucket": "",
-      "path": ""
+      "bucket": "projects.seattletimes.com",
+      "path": "2015/sports/mls-world-map"
     }
   },
   "sheets": ["16owI1u60TKDQrbepVBI1okzhF4Qi60nbhtXUccdi8Ys"],
@@ -15,5 +15,5 @@
   "url": "",
   "slug": "",
   "tags": [],
-  "production": false
+  "production": true
 }
