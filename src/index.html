@@ -27,7 +27,7 @@
     var team = t.team;
     var color = t.color;
     var country = t.country;
-    var players = t.totalplayers;
+    var players = t.totalplayers * 1;
 
     if (!teamData[id]) {
       teamData[id] = {
@@ -38,11 +38,11 @@
     }
     var data = teamData[id];
     if (!data.countries[country]) { data.countries[country] = {} }
-    data.countries[country].players = players;
+    data.countries[country].players = players * 1;
 
     if (t.subcountry && t.subplayers) { 
       var subCountry = t.subcountry;
-      var subPlayers = t.subplayers;
+      var subPlayers = t.subplayers * 1;
 
       if (!data.countries[country].subData) { data.countries[country].subData = {} }
       data.countries[country].subData[subCountry] = subPlayers;
@@ -91,7 +91,7 @@
           <% }) %>
         </div>
         <div class="mobile-menu">
-          <h2>Choose a team</h2>
+          <h2>Choose a team: </h2>
           <select>
             <option value="mls">MLS (Entire league)</option>
             <% teams.forEach(function(t) { %>

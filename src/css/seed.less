@@ -63,7 +63,7 @@ body {
   z-index: 99;
 
   .inner {
-    display: block;
+    display: none;
     margin: auto;
     text-align: center;
 
@@ -93,15 +93,23 @@ body {
   }
 
   .mobile-menu {
-    display: none;
 
     h2 {
       margin: 0;
+      display: inline-block;
+      vertical-align: middle;
+
+      @media @mobile {
+        display: block;
+      }
     }
 
     select {
-      width: 100%;
       font-size: 15px;
+      vertical-align: middle;
+      @media @mobile {
+        width: 100%;
+      }
     }
 
     @media @mobile {
@@ -115,7 +123,7 @@ body {
   position: absolute;
   background: rgba(255, 255, 255, 0.8);
   bottom: 30px;
-  left: 30px;
+  right: 30px;
   border-radius: 2px;
   font-size: 14px;
   padding: 10px;

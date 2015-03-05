@@ -66,7 +66,7 @@ var openTooltip = function(event){
   } else if (team == "sounders") {
     source = soundersData;
   } else {
-    source = teamData[team];
+    source = teamData[team].countries;
   }
 
   if (source[country]) {
@@ -163,7 +163,7 @@ var fillColor = function(teamId, country) {
 
   var scale = scales[teamId] || scales.default;
   var palette = colors[color];
-  var players = worldData[country].players * 1;
+  var players = data[country].players * 1;
   for (var i = scale.length - 1; i >= 0; i--) {
     if (players > scale[i]) return palette[i];
   }
