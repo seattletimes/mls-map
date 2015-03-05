@@ -5,11 +5,11 @@
       var country = c.country;
       var players = c.totalplayers;
       if (!dataObj[country]) { dataObj[country] = {} }
-      dataObj[country].players = players;
+      dataObj[country].players = players * 1;
 
       if (c.subcountry && c.subplayers) { 
         var subCountry = c.subcountry;
-        var subPlayers = c.subplayers;
+        var subPlayers = c.subplayers * 1;
 
         if (!dataObj[country].subData) { dataObj[country].subData = {} }
         dataObj[country].subData[subCountry] = subPlayers;
@@ -57,8 +57,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link href='http://fonts.googleapis.com/css?family=Ropa+Sans:400,400italic|Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <!-- typekit fonts -->
+    <script>
+    (function(d) {
+    var config = {
+      kitId: 'rvq5yyp',
+      scriptTimeout: 3000
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+    })(document);
+    </script>
   </head>
 
   <body>
@@ -98,6 +107,12 @@
             <option value="<%= t %>"><%= teamData[t].team %></option>
             <% }) %>
           </select>
+          <div class="toggle">
+            <div class="button-container">
+              <button class="selected" data-team="seattle">This Season</button>
+              <button data-team="sounders">2009 - Present</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -105,10 +120,6 @@
         <div class="aspect-ratio-outer">
           <div class="aspect-ratio-inner">
             <div id="map"></div>
-            <div class="toggle">
-              <button class="selected" data-team="seattle"><i class="fa fa-map-marker"></i> This Season</button>
-              <button data-team="sounders"><i class="fa fa-map-marker"></i> 2009 - Present</button>
-            </div>
           </div>
         </div>
         <div class="legend"></div>

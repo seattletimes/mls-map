@@ -1,5 +1,9 @@
 @import (inline) "../../node_modules/leaflet/dist/leaflet.css";
 
+@import "seattletimes";
+@import "values";
+@import "flexbox";
+
 @mobile: ~"(max-width: 480px)";
 @top-height: 52px;
 @aspect-ratio: 7/10;
@@ -15,7 +19,7 @@
 
 body {
   margin: 0;
-  font-family: "Ropa Sans";
+  //font-family: "Ropa Sans";
 }
 
 .map-container {
@@ -41,18 +45,32 @@ body {
 }
 
 .leaflet-container {
-  background-color: @sounders-blue;
+  background-color: rgb(176, 192, 204);
+}
+
+.leaflet-control-zoom {
+  @media @mobile {
+    display: none;
+  }
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 0;
 }
 
 // leaflet popup
 .country {
-  font-size: 17px;
-  color: #005595;
-  font-family: "Ropa Sans";
+  font-size: 13px;
+  color: @df-dark-gray;
+  text-transform: uppercase;
+  padding-top: 4px;
 }
+
 .players {
-  font-family: "Lato";
+  font-size: 14px;
+  font-weight: bold;
 }
+
 .sub.players:not(:last-of-type) {
   padding-bottom: 5px;
 }
@@ -93,6 +111,7 @@ body {
   }
 
   .mobile-menu {
+    padding: 8px;
 
     h2 {
       margin: 0;
@@ -101,14 +120,25 @@ body {
 
       @media @mobile {
         display: block;
+        font-size: 16px;
       }
     }
 
     select {
-      font-size: 15px;
       vertical-align: middle;
+      font-family: @df-serif;
+      font-size: 20px;
+      border: none;
+
+      option {
+        font-size: 18px;
+        font-weight: normal;
+        margin-bottom: 8px;
+      }
+
       @media @mobile {
         width: 100%;
+        padding: 8px;
       }
     }
 
@@ -127,6 +157,10 @@ body {
   border-radius: 2px;
   font-size: 14px;
   padding: 10px;
+  
+  .legend-row {
+    .display-flex;
+  }
 
   @media @mobile {
     display: block;
@@ -134,32 +168,37 @@ body {
   }
 
   .hero {
-    float: left;
+    .display-flex;
+    .flex(1);
+    .justify-content(center);
+    .align-items(center);
+    max-width: 100px;
+    padding: 4px;
 
     img {
-      height: 100px;
+      width: 100%;
     }
   }
 
-  .swatch {
-
-    // height: 20px;
-    // width: 15%; 
-    // float: left;
-    // text-align: center;
+  .number-label {
+    text-align: center;
+    font-weight: bold;
   }
 
-  .outer {
-    display: inline-block;
-    padding-left: 10px;
+  .key {
+    .flex(1);
+    // .display-flex;
+    // .flex-direction(column);
+    // .align-items(center);
+    padding: 4px;
+  }
 
-    .number-label {
-      font-weight: bold;
+  .key-item {
+    @media @mobile {
+      float: left;
+      width: 50%;
+      padding: 0 10px;
     }
-  }
-
-  .inner {
-    padding: 3px 0;
   }
 
   .swatch {
@@ -175,23 +214,34 @@ body {
 }
 
 .toggle {
-  position: absolute;
-  top: 10px;
-  left: 50px;
-  width: 100%;
+  display: inline-block;
+  vertical-align: middle;
+
+  @media @mobile {
+    display: block;
+    padding: 8px 0;
+  }
+
+  .button-container {
+    .display-flex;
+  }
+
+  &.hidden {
+    display: none;
+  }
 
   button {
-    display: none;
+    .flex(1);
     white-space: nowrap;
-    margin-right: 4px;
-    font-size: 14px;
+    font-size: 12px;
     border: 1px solid #666;
-    border-radius: 4px;
     cursor: pointer;
     transition: background 0.2s linear;
     background: white;
     font-family: Helvetica, sans-serif;
     padding: 4px 8px;
+    text-transform: uppercase;
+    line-height: 1;
 
     &:hover {
       background: #DDD;
@@ -200,19 +250,16 @@ body {
     &.selected {
       background: #444;
       color: white;
+      font-weight: bold;
     }
 
     @media @mobile {
       font-size: 12px;
-      width: 40%;
-
-      &.desktop {
-        display: none;
-      }
     }
   }
 }
 
 .credits {
   font-size: 11px;
+  font-style: italic;
 }

@@ -1,14 +1,16 @@
-  <div class="hero">
-    <div class="team-label">{{name}}</div>
-    <img src="./assets/{{img}}.gif"></img>
-  </div>
-  <div class="outer">
-    <div class="number-label">Number of Players</div>
-    {{#colors}}
-      <div class="inner"><div class="swatch" style="background: {{.}}"></div><div class="label">1-2</div></div>
-    {{/colors}}
+  <div class="legend-row">
+    <div class="hero">
+      <!--<div class="team-label">{{name}}</div>-->
+      <img src="./assets/{{img}}.gif" alt="{{name}}"></img>
+    </div>
+    <div class="key">
+      <div class="number-label">Number of players:</div>
+      {{#key}}
+        <div class="key-item"><div class="swatch" style="background: {{data}}"></div><div class="label">{{label}}</div></div>
+      {{/key}}
+    </div>
   </div>
   <div class="credits">
-    Interactive by Audrey Carlsen<br>
+    Interactive: Audrey Carlsen and Thomas Wilburn<br>
     Data source: tktk
   </div>

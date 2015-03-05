@@ -11,20 +11,21 @@ var team = $(".mobile-menu select").val() || "mls";
 var worldLayer;
 
 var legend = $(".legend");
+var toggle = $(".toggle");
 var soundersTime = $(".toggle button");
 
 ich.addTemplate("popup", popupHTML);
 ich.addTemplate("legend", legendHTML);
 
-var map = L.map('map', {
-  scrollWheelZoom: false
+var map = window.map = L.map('map', {
+  scrollWheelZoom: false,
+  minZoom: 1,
+  attributionControl: false
 });
 
 var bounds = [
-  [-28, -135],
-  [63, 14],
-  [-40, 125],
-  [-41, -68]
+  [65, -130],
+  [-46, 137]
 ];
 
 map.fitBounds(bounds);
@@ -121,17 +122,37 @@ var changeTeam = function(t) {
   if (worldLayer) worldLayer.setStyle(restyle);
   map.closePopup();
   if (team == "seattle") {
-    soundersTime.removeClass("selected").show().filter("[data-team=\"seattle\"]").addClass("selected");
+    toggle.removeClass("hidden");
+    soundersTime.removeClass("selected").filter("[data-team=\"seattle\"]").addClass("selected");
   } else {
-    soundersTime.hide();
+    toggle.addClass("hidden");
   }
 
   var data = team == "mls" ? worldData : teamData[team];
 
+  var palette = team == "mls" ? colors.red : 
+    team == "sounders" ? colors.green :
+    colors[data.color]
+
+  var scale = scales[team] || scales.default;
+
+  var key = palette.map(function(color, i) {
+    var label;
+    if (i == palette.length - 1) {
+      label = scale[i] + "+";
+    } else {
+      label = [scale[i], scale[i+1] - 1].join(" - ");
+    }
+    return {
+      data: color,
+      label: label
+    }
+  })
+
   legend.html(ich.legend({
     name: data.team || "MLS",
     img: team,
-    colors: team == "mls" ? colors.red : colors.green
+    key: key
   }));
 };
 
@@ -165,7 +186,7 @@ var fillColor = function(teamId, country) {
   var palette = colors[color];
   var players = data[country].players * 1;
   for (var i = scale.length - 1; i >= 0; i--) {
-    if (players > scale[i]) return palette[i];
+    if (players >= scale[i]) return palette[i];
   }
 
   return "black";
