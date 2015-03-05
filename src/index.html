@@ -21,7 +21,6 @@
   var soundersData = parseData(json.MLSCountries_Sounders_Total);
   var worldData = parseData(json.MLSCountries_Current_Total);
 
-
   var teamData = {};
   json.MLSCountries_Current_Clean.forEach(function(t) {
     var id = t.id;
@@ -30,18 +29,23 @@
     var country = t.country;
     var players = t.totalplayers;
 
-    if (!teamData[id]) { teamData[id] = {} }
-    teamData[id].team = team;
-    teamData[id].color = color;
-    if (!teamData[id][country]) { teamData[id][country] = {} }
-    teamData[id][country].players = players;
+    if (!teamData[id]) {
+      teamData[id] = {
+        team: team,
+        color: color,
+        countries: {}
+      };
+    }
+    var data = teamData[id];
+    if (!data.countries[country]) { data.countries[country] = {} }
+    data.countries[country].players = players;
 
     if (t.subcountry && t.subplayers) { 
       var subCountry = t.subcountry;
       var subPlayers = t.subplayers;
 
-      if (!teamData[id][country].subData) { teamData[id][country].subData = {} }
-      teamData[id][country].subData[subCountry] = subPlayers;
+      if (!data.countries[country].subData) { data.countries[country].subData = {} }
+      data.countries[country].subData[subCountry] = subPlayers;
     }
   });
 
@@ -74,7 +78,12 @@
               <div class="badge-group">
             <% } %>
               <div class="badge">
-                <img src="./assets/<%= t %>.gif" data-team="<%= t %>" data-name="<%= teamData[t].team %>"></img>
+                <img
+                  src="./assets/<%= t %>.gif"
+                  data-team="<%= t %>"
+                  data-name="<%= teamData[t].team %>"
+                  title="<%= teamData[t].team %>"
+                ></img>
               </div>
             <% if (index % 3 == 2) { %>
               </div>
@@ -82,8 +91,9 @@
           <% }) %>
         </div>
         <div class="mobile-menu">
+          <h2>Choose a team</h2>
           <select>
-            <option value="mls">MLS</option>
+            <option value="mls">MLS (Entire league)</option>
             <% teams.forEach(function(t) { %>
             <option value="<%= t %>"><%= teamData[t].team %></option>
             <% }) %>
@@ -101,9 +111,9 @@
             </div>
           </div>
         </div>
+        <div class="legend"></div>
       </div>
 
-      <div class="legend"></div>
 
     </responsive-child>
 
