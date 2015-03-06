@@ -2,13 +2,13 @@
   var parseData = function(data) {
     var dataObj = {};
     data.forEach(function(c) {
-      var country = c.country;
+      var country = c.country.trim();
       var players = c.totalplayers;
       if (!dataObj[country]) { dataObj[country] = {} }
       dataObj[country].players = players * 1;
 
       if (c.subcountry && c.subplayers) { 
-        var subCountry = c.subcountry;
+        var subCountry = c.subcountry.trim();
         var subPlayers = c.subplayers * 1;
 
         if (!dataObj[country].subData) { dataObj[country].subData = {} }
@@ -26,7 +26,7 @@
     var id = t.id;
     var team = t.team;
     var color = t.color;
-    var country = t.country;
+    var country = t.country.trim();
     var players = t.totalplayers * 1;
 
     if (!teamData[id]) {
@@ -41,7 +41,7 @@
     data.countries[country].players = players * 1;
 
     if (t.subcountry && t.subplayers) { 
-      var subCountry = t.subcountry;
+      var subCountry = t.subcountry.trim();
       var subPlayers = t.subplayers * 1;
 
       if (!data.countries[country].subData) { data.countries[country].subData = {} }
